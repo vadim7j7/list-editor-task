@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react";
 
-function App() {
+import List from "./components/List";
+
+const initialList = [
+  {
+    id: "1",
+    position: 0,
+    name: "Coffee",
+    subItems: []
+  },
+  {
+    id: "2",
+    position: 1,
+    name: "Tea",
+    subItems: [
+      { id: "2:1", position: 0, name: "Black tea", subItems: [] },
+      { id: "2:2", position: 1, name: "Green tea", subItems: [] }
+    ]
+  },
+  {
+    id: "3",
+    position: 2,
+    name: "Milk",
+    subItems: []
+  }
+];
+
+const listReducer = (state, action) => {
+};
+
+const App = () => {
+  const [lists, dispatch] = useReducer(listReducer, initialList);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>A Nested List Editor</h2>
+
+      <List
+        items={lists}
+      />
     </div>
   );
-}
+};
 
 export default App;
